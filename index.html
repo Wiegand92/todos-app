@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link rel='stylesheet' type='text/css' href='./style.css'>
+  </head>
+  <body>
+    <section id='list'>
+      <label>
+        Search Todos:
+        <input type='text' placeholder='Filter todos by' id='filter'>
+      </label>
+      <h2>Incomplete Tasks</h2>
+      <section class='task-box' id='incomplete'>
+      </section>
+      <h2>Completed Tasks</h2>
+      <section class='task-box' id='complete'>
+      </section>
+
+      <h2>New Todo</h2>
+      <form id='new-todo'>
+        <input type=text placeholder='new todo' name='newTask'/>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+    <script src="./scripts/todos_app.js" type='module'></script>
+  </body>
+</html>
