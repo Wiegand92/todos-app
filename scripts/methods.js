@@ -20,7 +20,7 @@ const displayTasks = (todosArray, originalArray) => {
     const task = document.createElement('p')
     task.className = 'task'
     task.innerHTML = todo.task
-    task.name = todo.uuid
+    task.uuid = todo.uuid
 
     //All tasks have a delete button, so placed out here.
 
@@ -82,10 +82,10 @@ const saveTodos = (userArray) => {
 //Handlers and listeners for the delete and finish buttons
 
 const deleteHandler = (task, todosArray, originalArray) => {
-  let taskID = findIdByUUID(task.name, todosArray)
+  let taskID = findIdByUUID(task.uuid, todosArray)
   removeById(taskID, todosArray)
   if(originalArray !== undefined) {
-    taskID = findIdByUUID(task.name, originalArray)
+    taskID = findIdByUUID(task.uuid, originalArray)
     removeById(taskID, originalArray)
   }
   displayTasks(todosArray, originalArray)
@@ -103,10 +103,10 @@ const deleteListeners = (todosArray, originalArray) => {
 }
 
 const finishHandler = (task, todosArray, originalArray) => {
-  let taskID = findIdByUUID(task.name, todosArray)
+  let taskID = findIdByUUID(task.uuid, todosArray)
   markDone(taskID, todosArray)
   if(originalArray !== undefined) {
-    taskID = findIdByUUID(task.name, originalArray)
+    taskID = findIdByUUID(task.uuid, originalArray)
     markDone(taskID, originalArray)
   }
   displayTasks(todosArray, originalArray)
