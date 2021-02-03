@@ -1,12 +1,12 @@
 import todos from './todos.js'
 import { displayTasks, saveTodos } from './methods.js'
-
+//uuidv4() is imported in index.html
+  //creates new uuid
 
 let userTodos = JSON.parse(localStorage.getItem('userTodos'))
 
 if(!userTodos || userTodos.length === 0){
   userTodos = [...todos]
-  saveTodos(userTodos)
 }
 
 displayTasks(userTodos)
@@ -29,7 +29,6 @@ filter.addEventListener('input', event => {
   })
 
   displayTasks(filteredTodos, userTodos)
-
 })
 
 const form = document.querySelector('#new-todo')
@@ -40,9 +39,9 @@ form.addEventListener('submit', event => {
   if(newTask.value) {
     userTodos.push({
       task: newTask.value,
-      completed: false
+      completed: false,
+      uuid: uuidv4()
     })
-    saveTodos(userTodos)
     displayTasks(userTodos)
     newTask.value = ''
   }

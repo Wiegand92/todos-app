@@ -1,5 +1,3 @@
-import todos from './todos.js'
-
 const displayTasks = (todosArray, originalArray) => {
 
   const completeSection = document.querySelector('#complete')
@@ -21,6 +19,8 @@ const displayTasks = (todosArray, originalArray) => {
     taskSection.className = 'task-row'
     const task = document.createElement('p')
     task.className = 'task'
+    task.innerHTML = todo.task
+    task.name = todo.uuid
 
     //All tasks have a delete button, so placed out here.
 
@@ -28,13 +28,14 @@ const displayTasks = (todosArray, originalArray) => {
     deleteButton.className = 'delete'
     deleteButton.innerHTML = 'X'
 
+    
+    taskSection.appendChild(task)
+    taskSection.appendChild(deleteButton)
+
     //If there is a finished task place it in completed section
 
     if(todo.completed){
       task.id = 'completed'
-      task.innerHTML = todo.task
-      taskSection.appendChild(task)
-      taskSection.appendChild(deleteButton)
       completeSection.appendChild(taskSection)
     } else {
 
@@ -43,23 +44,25 @@ const displayTasks = (todosArray, originalArray) => {
       const finishButton = document.createElement('button')
       finishButton.className = 'finish'
       finishButton.innerHTML = '&#10003'
-      task.innerHTML = todo.task
       task.id = 'incompleted'
-      taskSection.appendChild(task)
-      taskSection.appendChild(deleteButton)
       taskSection.appendChild(finishButton)
       incompleteSection.appendChild(taskSection)
-    }
-    deleteListeners(todosArray, originalArray)
-    finishListeners(todosArray, originalArray)
+    }    
   })
+  deleteListeners(todosArray, originalArray)
+  finishListeners(todosArray, originalArray)
+  if(originalArray !== undefined) {
+    saveTodos(originalArray)
+  } else {
+    saveTodos(todosArray)
+  }
 }
 
 //Helper functions to DRY code
 
-const findIdByText = (text, inputArray) => {
+const findIdByUUID = (UUID, inputArray) => {
   return inputArray.findIndex(todo => {
-    return todo.task.toLowerCase().trim() === text.toLowerCase().trim()
+    return todo.uuid === UUID
   })
 }
 
@@ -71,19 +74,21 @@ const markDone = (id, inputArray) => {
   inputArray[id].completed = true
 }
 
+const saveTodos = (userArray) => {
+  const userTodosJSON = JSON.stringify(userArray)
+  localStorage.setItem('userTodos', userTodosJSON)
+}
+
 //Handlers and listeners for the delete and finish buttons
 
-const deleteHandler = (task, section, todosArray, originalArray) => {
-  let taskID = findIdByText(task.innerText, todosArray)
+const deleteHandler = (task, todosArray, originalArray) => {
+  let taskID = findIdByUUID(task.name, todosArray)
   removeById(taskID, todosArray)
-  section.remove()
   if(originalArray !== undefined) {
-    taskID = findIdByText(task.innerText, originalArray)
+    taskID = findIdByUUID(task.name, originalArray)
     removeById(taskID, originalArray)
-    saveTodos(originalArray)
-  } else {
-    saveTodos(todosArray)
   }
+  displayTasks(todosArray, originalArray)
 }
 
 const deleteListeners = (todosArray, originalArray) => {
@@ -92,23 +97,19 @@ const deleteListeners = (todosArray, originalArray) => {
     button.addEventListener('click', (event) => { 
       event.preventDefault()
       const task = event.target.previousSibling
-      const section = event.target.parentNode
-      deleteHandler(task, section, todosArray, originalArray)
-    })
+      deleteHandler(task, todosArray, originalArray)
+    }, false)
   })
 }
 
 const finishHandler = (task, todosArray, originalArray) => {
-  let taskID = findIdByText(task.innerText, todosArray)
+  let taskID = findIdByUUID(task.name, todosArray)
   markDone(taskID, todosArray)
-  displayTasks(todosArray)
   if(originalArray !== undefined) {
-    taskID = findIdByText(task.innerText, originalArray)
+    taskID = findIdByUUID(task.name, originalArray)
     markDone(taskID, originalArray)
-    saveTodos(originalArray)
-  } else {
-    saveTodos(todosArray)
   }
+  displayTasks(todosArray, originalArray)
 }
 
 const finishListeners = (todosArray, originalArray) => {
@@ -118,13 +119,8 @@ const finishListeners = (todosArray, originalArray) => {
       event.preventDefault()
       const task = event.target.previousSibling.previousSibling
       finishHandler(task, todosArray, originalArray)
-    })
+    }, false)
   })
-}
-
-const saveTodos = (userArray) => {
-  const userTodosJSON = JSON.stringify(userArray)
-  localStorage.setItem('userTodos', userTodosJSON)
 }
 
 export { displayTasks, saveTodos }
