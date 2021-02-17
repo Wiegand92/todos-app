@@ -1,7 +1,6 @@
 import todos from './todos.js'
-import { displayTasks, saveTodos } from './methods.js'
-//uuidv4() is imported in index.html
-  //creates new uuid
+import { displayTasks } from './methods.js'
+import uuidv4 from 'uuid'
 
 let userTodos = JSON.parse(localStorage.getItem('userTodos'))
 
@@ -36,6 +35,14 @@ const form = document.querySelector('#new-todo')
 form.addEventListener('submit', event => {
   event.preventDefault()
   const newTask = event.target.elements.newTask
+  const isSame = () => {
+    for(let i=0; i<todos.length; i++) {
+      return todos[i].task === userTodos[i].task
+    }
+  }
+  if(isSame() && newTask.value) {
+    userTodos = []
+  }
   if(newTask.value) {
     userTodos.push({
       task: newTask.value,

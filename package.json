@@ -1,0 +1,31 @@
+{
+  "name": "todos_app",
+  "version": "1.0.0",
+  "description": "Todos app for js-bootcamp by Andrew Mead",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev-server": "webpack serve --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wiegand92/todos-app.git"
+  },
+  "author": "Alex Wiegand",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wiegand92/todos-app/issues"
+  },
+  "homepage": "https://github.com/Wiegand92/todos-app#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/preset-env": "^7.12.16",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.21.2",
+    "webpack-cli": "^4.5.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "uuidv4": "^6.2.6"
+  }
+}

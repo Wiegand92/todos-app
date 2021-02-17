@@ -123,4 +123,4 @@ const finishListeners = (todosArray, originalArray) => {
   })
 }
 
-export { displayTasks, saveTodos }
+export { displayTasks }
