@@ -1,14 +1,8 @@
-import todos from './todos.js'
-import { displayTasks } from './methods.js'
-import uuidv4 from 'uuid'
+import { setFilters } from './filters.js'
+import { addTodo } from './todos.js'
+import { displayTasks } from './views.js'
 
-let userTodos = JSON.parse(localStorage.getItem('userTodos'))
-
-if(!userTodos || userTodos.length === 0){
-  userTodos = [...todos]
-}
-
-displayTasks(userTodos)
+displayTasks()
 
 //Logic for filtering through todos
   //I add a second array and push matching items to this array
@@ -18,16 +12,20 @@ const filter = document.querySelector('#filter')
 
 filter.addEventListener('input', event => {
   const filterBy = event.target.value.toLowerCase()
+  if(filterBy){
+    setFilters({ text: filterBy })
+  } else {
+    setFilters({ text: ''})
+  }
+  displayTasks()
+})
 
-  const filteredTodos = []
+const hideCompleted = document.querySelector('#hideCompleted')
 
-  userTodos.forEach(todo => {
-    if(todo.task.toLowerCase().includes(filterBy)){
-      filteredTodos.push(todo)
-    }
-  })
-
-  displayTasks(filteredTodos, userTodos)
+hideCompleted.addEventListener('change', (e) => {
+  console.log(e)
+  setFilters({ hideCompleted: e.target.checked})
+  displayTasks()
 })
 
 const form = document.querySelector('#new-todo')
@@ -35,21 +33,10 @@ const form = document.querySelector('#new-todo')
 form.addEventListener('submit', event => {
   event.preventDefault()
   const newTask = event.target.elements.newTask
-  const isSame = () => {
-    for(let i=0; i<todos.length; i++) {
-      return todos[i].task === userTodos[i].task
-    }
-  }
-  if(isSame() && newTask.value) {
-    userTodos = []
-  }
+
   if(newTask.value) {
-    userTodos.push({
-      task: newTask.value,
-      completed: false,
-      uuid: uuidv4()
-    })
-    displayTasks(userTodos)
+    addTodo(newTask.value)
+    displayTasks()
     newTask.value = ''
   }
 })
