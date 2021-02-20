@@ -1,5 +1,19 @@
 # Todos-App
 
+## How to try
+
+ ### Visit the site
+  #### [Todos-App](abrasive-bee.surge.sh) 
+  > <sub>hosted by surge</sub>
+ 
+ ### Run your own build
+  ```
+    git clone https://github.com/Wiegand92/todos-app
+    npm install
+    npm run dev-server
+  ```
+  
+
 ## About
 
 This is a project for the Javascript bootcamp by Andrew Mead on Udemy. A simple todo app that allows you to add, delete, mark done, and filter through todos.
@@ -10,4 +24,11 @@ This project was my first step in to Local Storage. Also a jump back in to funct
 
 ## RoadMap
 
-Might update the css a bit in the future. Please let me know if you spot any bugs. I would also like to add a testing environment at some point, as well as setting individual id's for the tasks
+ - Click on incomplete todos to edit text
+ - Click on complete todos to mark incomplete
+
+## Technologies used
+
+ - UUID to create UUIDs
+ - Webpack to bundle
+ - Babel to transpile
