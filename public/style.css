@@ -1,86 +1,218 @@
+@media (orientation: landscape) {
+  #list {
+    align-content: space-around;
+    justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-width: 90vw;
+    max-width: 90vw
+  }
+  .todo-box {
+    flex: 1 1 40%;
+    max-height: 75%;
+    max-width: 45%;
+    margin: 0 2% 0 2%;
+  }
+  .new-todo-box {
+    flex: 0 0 50%;
+    align-content: space-around;
+  }
+}
+
+@media(orientation: portrait) {
+  #list {
+    display: flex;
+    flex-direction: column;
+    min-width: 95%;
+    min-height: 83vh;
+  }
+  .todo-box {
+    min-width: 95%;
+    max-height: 33%
+  }
+}
+
+@media screen and (max-width: 530px) {
+  header label {
+    display: none
+  }
+}
+
+@media screen and (max-width: 310px) {
+  header h1 {
+    display: none
+  }
+}
+
 body {
   margin: 0;
   background-color: #479AD1;
   color: #0C2427;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
+
+header {
+  background-color: #D8EEE1;
+  display: flex;
+  justify-content:flex-end;
+  align-items: center;
+  border-bottom-right-radius: 5px;
+  box-shadow: 5px 5px 3px black;
+  margin-right: .25vw;
+  max-height: 10vh;
+  min-height: 10vh;
+  max-width: 99.75%;
+  min-width: 99.75%;
+}
+
+  h1 {
+    margin-right: 5vw;
+    color: #479AD1;
+    font-weight: 800;
+    text-shadow: .035em .035em black;
+  }
+
+  header label {
+    margin: auto 5vw auto 0;
+    align-items: center;
+    border-bottom: 2px solid black;
+  }
+
+  #filter {
+    min-height: 20px;
+    max-height: 20px;
+    margin: auto;
+  }
 
 button {
   height: 25px;
   width: 25px;
   border-radius: 50%;
   text-align: center;
-  margin: 0 10px;
   font-weight: 600;
+  margin: 12.5px;
+  float: right
 }
 
-.finish {
-  background-color: #46a46c;
-}
+  .finish {
+    background-color: #46a46c;
+    margin-right: 5%;
+  }
 
-.delete {
-  background-color: #da304c;
+  .delete {
+    background-color: #da304c;
+    margin-right: 5%;
+    margin-left: auto;
+  }
+
+    #completed-todos-box .delete {
+      margin-right: 10%;
+      margin-left: auto;
+    }
+
+input {
+  text-align: center;
+  background-color: #479AD1;
+  color: black;
+  border-radius: 5px;
+  border: 2px inset darkgrey;
 }
+  input::placeholder {
+    color: #D8EEE1;
+    text-shadow: 1px 1px black;
+  }
 
 #list{
   background-color: #D8EEE1;
   border-radius: 10px;
   box-shadow: 5px 5px 3px black;
-  display: flex;
-  flex-direction: column;
-  margin: 10vh auto;
-  width: 66vw;
-  height: 75vh;
+  margin: 5vh auto;
+  height: 80vh;
   text-align: center;
   align-items: center;
 }
 
-#list h2 {
-  border-bottom: black 1px solid;
-  width: 50%;
-}
+  #list h2 {
+    margin: 3vh auto;
+    border-bottom: black 1px solid;
+    width: 50%;
+  }
 
-.task-box {
+.todo-box {
   display: flex;
-  overflow: auto;
-  max-height: 25%;
   flex-direction: column;
+  align-content: space-around;
+  max-width: 95%
 }
 
-.task-row{
-  display: flex;
-  flex-direction: row;
-  max-height: 50px;
-  align-items: center;
-}
+  .task-box {
+    display: flex;
+    overflow: auto;
+    flex-direction: column;
+    justify-items: center;
+  }
 
-.task {
-  border-radius: 5px;
-  padding: .5rem;
-  width: 100%;
-  margin: 20px;
-}
+    .task-box::-webkit-scrollbar {
+      width: 5px;
+      margin-right: 1px
+    }
+    
+      .task-box::-webkit-scrollbar-track{
+        background-color: #D8EEE1;
+        
+      }
 
-#completed {
-  background-color: #46a46c;
-}
+      .task-box::-webkit-scrollbar-thumb {
+        background-color: #479AD1;
+        width: 3px;
+        border: 1px inset black;
+        border-top: none;
+        border-left: none;
+        border-radius: 5px;
+      }
 
-#incompleted {
-  background-color: #da304c;
-}
+    .task-row{
+      display: flex;
+      align-items: center;
+    }
 
-#new-todo {
+      .task {
+        border-radius: 5px;
+        padding: .5rem;
+        position: relative;
+        margin: 10px;
+        color: #D8EEE1;
+        text-shadow: 1px 1px black;
+        box-shadow: 2px 2px 1px black;
+      }
+
+        #completed {
+          background-color: #46a46c;
+        }
+
+        #incompleted {
+          background-color: #da304c;
+        }
+
+#new-todo-box {
   display: flex;
   flex-direction: column
 }
 
-#new-todo button {
-  width: 6em;
-  border-radius: 5px;
-  margin: .5em auto
-}
+  #new-todo {
+    display: flex;
+    flex-direction: column
+  }
 
-#filter {
-  margin-top: 20px
-}
+    #new-todo input {
+      margin: auto
+    }
+
+    #new-todo button {
+      width: 6em;
+      border-radius: 5px;
+      margin: .5em auto
+    }

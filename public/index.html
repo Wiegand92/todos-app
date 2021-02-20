@@ -2,28 +2,41 @@
 
 <html>
   <head>
+    <title>Todo App by Alex</title>
     <link rel='stylesheet' type='text/css' href='./style.css'>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   </head>
   <body>
-    <section id='list'>
-      <label>
-        Search Todos:
-        <input type='text' placeholder='Filter todos by' id='filter'>
-      </label>
-      <h2>Incomplete Tasks</h2>
-      <section class='task-box' id='incomplete'>
-      </section>
-      <h2>Completed Tasks</h2>
-      <section class='task-box' id='complete'>
-      </section>
+    <header>
 
-      <h2>New Todo</h2>
-      <form id='new-todo'>
-        <input type=text placeholder='new todo' name='newTask'/>
-        <button type="submit">Submit</button>
-      </form>
+      <input type='text' placeholder='Search todos' id='filter'>
+      <label>
+        Hide Completed Todos:
+        <input type='checkbox' id='hideCompleted'>
+      </label>
+      <h1>Todo App</h1>
+    </header>
+    <section id='list'>
+      <div class='todo-box' id='incomplete-todos-box'>
+        <h2 class='task-header' id='incompleteHeader'>Incomplete Tasks</h2>
+        <section class='task-box' id='incomplete'>
+        </section>
+      </div>
+      
+      <div class= 'todo-box' id='completed-todos-box'>
+        <h2 class='task-header' id='completeHeader'>Completed Tasks</h2>
+        <section class='task-box' id='complete'>
+        </section>
+      </div>
+      
+      <div class='new-todo-box'>
+        <h2>New Todo</h2>
+        <form id='new-todo'>
+          <input type=text placeholder='new todo' name='newTask'/>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </section>
-    <!-- <script src="https://unpkg.com/uuid@latest/dist/umd/uuidv4.min.js"></script> -->
     <script src="./scripts/todos_app.js" type='module'></script>
   </body>
 </html>
