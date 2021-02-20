@@ -23,7 +23,6 @@ filter.addEventListener('input', event => {
 const hideCompleted = document.querySelector('#hideCompleted')
 
 hideCompleted.addEventListener('change', (e) => {
-  console.log(e)
   setFilters({ hideCompleted: e.target.checked})
   displayTasks()
 })

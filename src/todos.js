@@ -43,7 +43,6 @@ const getTodos = () => {
 }
 
 const addTodo = (todo) => {
-  console.log(todo)
   if(todo.length > 0){
     userTodos.push({
       task: todo,
