@@ -3,7 +3,7 @@
 ## How to try
 
  ### Visit the site
-  #### [Todos-App](abrasive-bee.surge.sh) 
+  #### [Todos-App](http://abrasive-bee.surge.sh) 
   > <sub>hosted by surge</sub>
  
  ### Run your own build
