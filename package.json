@@ -1,5 +1,5 @@
 {
-  "name": "todos_app",
+  "name": "todos-app",
   "version": "1.0.0",
   "description": "Todos app for js-bootcamp by Andrew Mead",
   "main": "index.js",

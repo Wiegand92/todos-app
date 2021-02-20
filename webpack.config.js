@@ -1,10 +1,10 @@
 const path = require('path')
 
 module.exports = {
-  entry:'./src/todos_app.js',
+  entry:'./src/todos-app.js',
   output: {
     path: path.resolve(__dirname, 'public/scripts'),
-    filename: 'todos_app.js'
+    filename: 'todos-app.js'
   },
   module: {
     rules: [{
